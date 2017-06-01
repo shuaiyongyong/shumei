@@ -1,0 +1,49 @@
+drop table member;
+drop table pay_vip;
+drop table rule;
+drop table consume;
+drop table consume_cp ;
+drop table total_consume ;
+drop table  product;
+drop table expend;
+drop table userinfo
+drop sequence seq_member_id;
+drop sequence seq_rule_rid;
+drop sequence seq_consume_id;
+drop sequence seq_consume_cp_id;
+drop sequence seq_tc_id;
+drop sequence seq_product_id;
+drop sequence seq_expend_id;
+create sequence seq_member_id increment by 1 start with 100001;
+create sequence seq_rule_rid increment by 1 start with 100001;
+create sequence seq_consume_id increment by 1 start with 100001;
+create sequence seq_consume_cp_id increment by 1 start with 100001;
+create sequence seq_tc_id increment by 1 start with 100001;
+create sequence seq_product_id increment by 1 start with 100001;
+create sequence seq_expend_id increment by 1 start with 100001;
+
+
+
+create table member(id int primary key,name varchar2(20),tel varchar2(11),pwd varchar2(16),money float,reg_date date,userid int,status int default 1 check (status in (0,1)) );
+
+
+create table rule( rid int primary key, rname varchar2(20), rnote varchar2(200), mem_money float, pub_money float, userid int);
+
+
+create table consume( tc_id int, rid int, cnum int);
+
+create table consume_cp( pid int, cs_num float, tc_id int );
+
+create table total_consume( tc_id int primary key, id int, tc_date date, ys_money float, sh_money float, userid int );
+
+
+create table product( pid int primary key, pname varchar2(20), pnum float, ptype varchar2(10), price float, userid int );
+
+
+create table pay_vip( id int primary key, vid int, ch_money float, ch_date date, userid int );
+
+
+create table expend( ex_id int primary key, ex_name varchar2(50), ex_money float, ex_date date, userid int );
+
+
+create table userinfo( id int primary key, name varchar2(16), pwd varchar2(16), email varchar2(30) );
